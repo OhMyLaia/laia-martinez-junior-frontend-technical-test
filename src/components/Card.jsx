@@ -5,7 +5,6 @@ import { useSchedule } from "../context/ScheduleContext";
 
 function Card({ session }) {
 
-    // const [isAttending, setIsAttending] = useState(false);
     const { sessionIds, add, remove } = useSchedule();
 
     const isAttending = sessionIds.includes(session.id);

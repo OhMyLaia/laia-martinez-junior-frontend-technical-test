@@ -1,7 +1,7 @@
 import './App.css'
 import Navbar from './layout/Navbar'
 import AppRoutes from './routes/AppRoutes'
-import { ScheduleProvider } from './context/ScheduleContext';
+import { ScheduleProvider } from './context/ScheduleContext.jsx';
 
 function App() {
 
