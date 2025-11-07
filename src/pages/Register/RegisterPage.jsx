@@ -17,23 +17,29 @@ function RegisterPage() {
 
     const ROLES = ['Student', 'Junior', 'Mid', 'Senior'];
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setIsLoading(true);
-        setError(null)
-        setRegistrationId(null);
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+            setIsLoading(true);
+            setError(null)
+            setRegistrationId(null);
 
-        const data = await registerAttendee(formData);
+            try {
+                const data = await registerAttendee(formData);
 
-        setIsLoading(false);
+                if (data.ok) {
+                    setRegistrationId(data.registrationId)
+                } else {
+                    setError(data.error)
+                }
 
-        // retorna la parte del objeto que nos interesa
-        if (data.ok) {
-            setRegistrationId(data.registrationId)
-        } else {
-            setError(data.error)
+            } catch (err) {
+                console.error("Ups! Something happened:", err);
+                setError("Ups! Something happened. Please try again.");
+
+            } finally {
+                setIsLoading(false);
+            }
         }
-    }
 
     const handleChange = (e) => {
         // 'name' is the input's tag "name" in the html --> same for "name", "email", "role" in this case

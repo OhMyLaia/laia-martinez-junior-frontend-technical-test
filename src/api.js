@@ -22,7 +22,8 @@ export async function searchSessions(query) {
 }
 
 export async function registerAttendee(payload) {
-    await delay(400);
+    await delay(600);
+    
     if (!payload?.name || !payload?.email || !payload?.role) {
         return { ok: false, error: "Missing fields" };
     }
