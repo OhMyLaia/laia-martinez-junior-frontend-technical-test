@@ -1,6 +1,15 @@
 # 🎯 Frontend Test — Session Finder + Schedule
 ## By Laia Martinez Lerma
 
+## UI's DEMO (responsive)
+<img width="576" height="769" alt="Screenshot 2025-11-07 at 16 42 07" src="https://github.com/user-attachments/assets/64cf0ad9-2e74-452a-996d-f068eaf60e90" />
+<img width="575" height="765" alt="Screenshot 2025-11-07 at 16 42 23" src="https://github.com/user-attachments/assets/290910d2-5317-4e55-a464-a12bb4d8d73e" />
+<img width="575" height="767" alt="Screenshot 2025-11-07 at 16 43 05" src="https://github.com/user-attachments/assets/7e4d0d19-365f-4a01-ac11-d2adfc4bbfae" />
+<img width="375" height="664" alt="Screenshot 2025-11-07 at 16 43 32" src="https://github.com/user-attachments/assets/75c95b44-9bd5-45a4-a7bd-ceb81efa5bc1" />
+<img width="371" height="662" alt="Screenshot 2025-11-07 at 16 43 46" src="https://github.com/user-attachments/assets/03d7043f-7fc5-4b1a-920c-9478558bd09a" />
+<img width="374" height="665" alt="Screenshot 2025-11-07 at 16 44 01" src="https://github.com/user-attachments/assets/679deeea-6889-4947-bd8b-a5a493b09a56" />
+
+
 ## 📖 Overview
 
 This project is a React-based application, some of it's features are:
