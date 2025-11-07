@@ -92,10 +92,10 @@ function Navbar() {
                 ${isActive ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 pointer-events-none'}
             `}>
                 {links.map(link => (
-                    <li className='w-fit' key={link.name}>
+                    <li className='w-fit mb-5' key={link.name}>
                         <NavLink
                             to={link.path}
-                            className="block py-2 hover:bg-gray-100 hover:bg-opacity-20 transition-colors duration-200"
+                            className="block py-2 hover:bg-gray-100 hover:bg-opacity-20 transition-colors duration-200 rounded-xl px-2"
                             onClick={() => setIsActive(false)}
                         >
                             {link.name}
