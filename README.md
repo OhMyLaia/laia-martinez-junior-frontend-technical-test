@@ -86,8 +86,8 @@ src/
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
-   cd <repository-folder>
+   git clone https://github.com/OhMyLaia/laia-martinez-junior-frontend-technical-test.git
+   cd laia-martinez-junior-frontend-technical-test
    ```
 
 2. Install dependencies:
@@ -101,15 +101,6 @@ src/
    ```
 
 4. Open the app in your browser at [http://localhost:5173](http://localhost:5173).
-
----
-
-## 🧪 Testing
-
-To lint the code, run:
-```bash
-npm run lint
-```
 
 ---
 
