@@ -1,150 +1,120 @@
-# 🎯 Frontend Take-Home Test — Session Finder + Schedule
+# 🎯 Frontend Test — Session Finder + Schedule
+## By Laia Martinez Lerma
 
-## ⏱ Timebox
-Please spend **no more than 3 hours** on this task.  
-It’s okay to leave comments or TODOs for improvements if you run out of time.
+## 📖 Overview
 
----
+This project is a React-based application, some of it's features are:
 
-## 🎯 Goal
+1. **Search sessions** by title, track, or speaker.
+2. **Add/remove sessions** to/from a personal schedule.
+3. **Register** using a form with validation and receive a confirmation ID.
+4. Shows **personal touch** with a clean UI, defined styles and reusable components.
 
-Build a small React app where a user can:
-
-1. **Search sessions** (from the provided mock API)
-2. **Add / remove sessions** to a personal **Schedule** (shared state)
-3. **Register** with a simple **form + validation**, and display the confirmation returned by the API
-4. **Create something original** — add a detail that shows your personal touch.
-   This could be:
-   - A visual detail or animation
-   - A reusable component pattern
-   - An interaction or small “wow” feature
-   - Anything you think represents your style and strengths
-
-**Styling is completely up to you.** 
-
-> **Recommendation:** Don’t try to make everything perfect or complete every idea.
-> Instead, **prioritize what you think is most important** (architecture, DX, UI quality, naming, etc.).
-> We value **decision-making and clarity** over quantity.
-
-**Reference (visual example only):**  
-https://68dcffe5683caab0190f57ff--guileless-truffle-7eae5c.netlify.app/
-
-
----
-
-## 🛠 Tech Rules
-- Use **React** (JavaScript).  
-- Styling is up to you — **Tailwind is optional** (bonus points if used cleanly).  
-- Don’t use heavy UI frameworks (Material UI, Ant Design, etc.).  
-- Keep it functional and clear; design polish is optional.
+The app is styled using **Tailwind CSS** and follows a functional and modular architecture --> components / layouts / pages / routes / utils / ...
 
 ---
 
 ## 🚀 Features
 
-### 1) Search
-- Input to filter sessions by **title, track, or speaker**.  
-- Display results with **title, track, speaker, start time**.  
-- Each result has an **“Add to Schedule”** button.  
-- Prevent duplicates (disable button or show a notice).
+### 1. Search
+- Filter sessions by **title**, **track**, or **speaker**.
+- Display session details such as title, track, speaker, start time (in local timing), and duration.
+- Toggle button, to avoid adding duplicates to "my schedule".
 
-### 2) My Schedule
-- List sessions the user added.  
-- Allow **Remove**.  
-- (Bonus) Sort by start time.
+### 2. My schedule
+- View a list of sessions added to the schedule.
+- Remove sessions from the schedule.
 
-### 3) Register
-- Form fields: **name**, **email**, **role** (`Student | Junior | Mid | Senior`).  
-- **Validation**:  
-  - Name: required.  
-  - Email: must look like a valid email.  
-  - Role: required.  
-- On submit → call `registerAttendee(payload)` and display the returned **registrationId**.
+### 3. Register
+- A form with fields for **name**, **email**, and **role**.
 
-### 4) Shared State
-- Use the provided **ScheduleContext** to make the schedule available across Search + My Schedule.  
+
+- **Validation**:
+  - Name: required, allows only letters, apostrophes, hyphens, and spaces.
+  - Email: must be a valid email format.
+  - Role: required.
+- On successful submission, displays a confirmation ID.
+- If some input is wrong, does not allow to send.
+
+### 4. Shared state
+- The schedule is managed using a **context provider** (`ScheduleContext`) to share state across components.
 
 ---
 
-## 📦 Mock API
-Copy the following into `src/api.js`:
+## 🛠 Tech stack
 
-```js
-export const SESSIONS = [
-  { id: "s1", title: "React Rendering Deep Dive", track: "Frontend", speaker: "A. Lee", startsAt: "2025-10-01T10:00:00Z", durationMins: 45 },
-  { id: "s2", title: "APIs without Tears", track: "Backend", speaker: "B. Singh", startsAt: "2025-10-01T11:00:00Z", durationMins: 30 },
-  { id: "s3", title: "State Mgmt Tradeoffs", track: "Frontend", speaker: "C. Gomez", startsAt: "2025-10-01T12:00:00Z", durationMins: 30 },
-  { id: "s4", title: "Practical CI/CD", track: "DevOps", speaker: "D. Chen", startsAt: "2025-10-01T13:00:00Z", durationMins: 40 },
-  { id: "s5", title: "Small Models, Big Wins", track: "AI", speaker: "E. Rossi", startsAt: "2025-10-01T14:00:00Z", durationMins: 25 },
-];
+- **React**: Frontend framework.
+- **React Router**: For routing between pages.
+- **Tailwind CSS**: For styling.
+- **Vite**: Build tool for fast development.
+- **React Icons**: For icons used in the UI.
 
-const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+---
 
-export async function searchSessions(query) {
-  await delay(300);
-  const q = (query || "").trim().toLowerCase();
-  if (!q) return SESSIONS;
-  return SESSIONS.filter(s =>
-    s.title.toLowerCase().includes(q) ||
-    s.track.toLowerCase().includes(q) ||
-    s.speaker.toLowerCase().includes(q)
-  );
-}
+## 📂 Project structure
 
-export async function registerAttendee(payload) {
-  await delay(400);
-  if (!payload?.name || !payload?.email || !payload?.role) {
-    return { ok: false, error: "Missing fields" };
-  }
-  return { ok: true, registrationId: "REG-" + Math.floor(100000 + Math.random() * 900000) };
-}
-
+```
+src/
+├── api.js                # Mock API for sessions and registration
+├── context/              # Context for shared state 
+├── layout/               # Layout components (for ex: Navbar)
+├── pages/                # Page components 
+├── routes/               # AppRoutes for routing
+├── utils/                # Utility functions 
+├── App.jsx               # Main app component
+├── App.css               # Global styles
+├── main.jsx              # Entry point
 ```
 
 ---
 
-## 📂 Provided Context
-Copy into `src/context/ScheduleContext.jsx`:
+## ▶️ How to run
 
-```js
-import { createContext, useContext, useState } from "react";
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd <repository-folder>
+   ```
 
-const ScheduleContext = createContext(null);
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-export function ScheduleProvider({ children }) {
-  const [sessionIds, setSessionIds] = useState([]);
-  const add = (id) => setSessionIds(prev => (prev.includes(id) ? prev : [...prev, id]));
-  const remove = (id) => setSessionIds(prev => prev.filter(x => x !== id));
-  return (
-    <ScheduleContext.Provider value={{ sessionIds, add, remove }}>
-      {children}
-    </ScheduleContext.Provider>
-  );
-}
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-export const useSchedule = () => useContext(ScheduleContext);
-```
-
-Wrap your app with `<ScheduleProvider>` in main.jsx or App.jsx.
+4. Open the app in your browser at [http://localhost:5173](http://localhost:5173).
 
 ---
 
-## ▶️ How to Run
+## 🧪 Testing
 
+To lint the code, run:
 ```bash
-npm install
-npm run dev
-
+npm run lint
 ```
 
 ---
 
-## 📑 What to Submit
+## 📑 Desired improvements
 
-- A link to a public repo (GitHub/GitLab) with your code.
+- **Testing**: Add unit tests for components.
+- **Usability**: clean state when query enters (on key down, for ex.)
+- **Performance**: Optimize rendering for large session lists with useMemo on CardList, for example.
+- **Styling**: Add animations, pcitures and original fonts.
+- **User**: create a context when a user's been registered to show, for example, "My Profile" instead of "Register" in navbar.
+- **Toggle**: Add animations to button for a real toggle effect.
 
-- A short README explaining:
-    - How to run the project
-    - What you’d improve with more time
-    - Any libraries you used (and why)
 
+---
+
+## 📦 Dependencies
+
+- **React**: For building the UI.
+- **React Router**: For navigation.
+- **Tailwind CSS**: For utility-first styling.
+- **React Icons**: For scalable vector icons.
+- **Vite**: For fast development and build.
