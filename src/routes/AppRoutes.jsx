@@ -1,6 +1,7 @@
 import HomePage from "../pages/Home/HomePage";
 import MySchedulePage from "../pages/MySchedule/MySchedulePage";
 import RegisterPage from "../pages/Register/RegisterPage";
+import ErrorPage from "../pages/Error/ErrorPage";
 import { Routes, Route } from "react-router-dom";
 
 
