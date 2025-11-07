@@ -51,7 +51,10 @@ function Navbar() {
     return (
         <nav ref={menuRef} className="bg-violet-300 px-3 py-3 flex flex-row justify-between items-center relative">
             <div>
-                <h2 className="text-2xl font-extrabold">Frekuent</h2>
+                <NavLink
+                to="/"
+                className="text-2xl font-extrabold">
+                    Frekuent</NavLink>
             </div>
 
             {/* Desktop */}
